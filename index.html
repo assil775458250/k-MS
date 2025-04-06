@@ -4,11 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
     <link rel="icon" href="Veva/شعار ممن.ico">
     <title>تسجيل الدخول إلى كتب اليمن</title>
     <style>
+        @media (width<=500px) {
+    .login-button
+    {
+        right: 40.5%
+    }
+}
+@media (width>500px) {
+    .login-button
+    {
+        right: 45%
+    }
+}
         body {
-            background: linear-gradient(500deg,yellow, #10a702,rgb(165, 104, 42));
+            background: #e0e0e0;
             margin: 0;
             font-family: Arial, sans-serif;
         }
@@ -105,6 +118,7 @@
     <center>  
         <img src="Veva/٢٠٢٥٠٤٠٥_١٥٠٢٠٣-gagagaga-preview.png" alt="شعار كتب اليمن" >
     </center>
+    <img src="Veva/لون ص.jpg" alt="" style="z-index: -1;width: 120%;height: 120%;position: absolute;right: 0px;top: 0px;">
 
     <form id="loginForm" class="hidden">
         <center>
@@ -127,11 +141,11 @@
     </fieldset>
     </center>
     </form>
-    <center>
+   
   <div >
-    <a href="index2.html"><button id="loginButton" class="login-button" onclick="resetForm()" style="right: 50%;">تسجيل الدخول</button>
+    <a href="index2.html"><button id="loginButton" class="login-button" onclick="resetForm()" style="position: relative;">تسجيل الدخول</button>
     </a>
-   </center>
+   
 </div>
    
     <script>
