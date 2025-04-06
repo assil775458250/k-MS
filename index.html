@@ -119,7 +119,7 @@
         <img src="Veva/٢٠٢٥٠٤٠٥_١٥٠٢٠٣-gagagaga-preview.png" alt="شعار كتب اليمن" >
     </center>
    
-    <form id="loginForm" class="hidden">
+    <form id="loginForm">
         <center>
         <fieldset>
             <legend>تسجيل الدخول إلى الموقع</legend>
@@ -141,16 +141,25 @@
     </center>
     </form>
    
-  <div >
-    <a href="index2.html"><button id="loginButton" class="login-button" onclick="resetForm()" style="position: relative;">تسجيل الدخول</button>
+  <div id="loginButtonContainer" class="hidden">
+    <a href="index2.html"><button id="loginButton" class="login-button" style="position: relative;">تسجيل الدخول</button>
     </a>
-   
-</div>
+  </div>
    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // لا نتحقق من localStorage هنا لأننا نريد أن يبقى الزر ظاهراً دائماً بعد الإرسال
-            // يتم التحكم في ظهور النموذج من خلال الدالة sendToWhatsApp فقط
+            // التحقق مما إذا كان المستخدم قد أرسل البيانات من قبل
+            const hasSubmitted = localStorage.getItem('formSubmitted');
+            
+            if (hasSubmitted) {
+                // إذا كان قد أرسل من قبل، نعرض زر تسجيل الدخول ونخفي النموذج
+                document.getElementById('loginForm').classList.add('hidden');
+                document.getElementById('loginButtonContainer').classList.remove('hidden');
+            } else {
+                // إذا كان أول زيارة، نعرض النموذج ونخفي زر تسجيل الدخول
+                document.getElementById('loginForm').classList.remove('hidden');
+                document.getElementById('loginButtonContainer').classList.add('hidden');
+            }
         });
 
         function sendToWhatsApp() {
@@ -170,17 +179,15 @@
                 // فتح الرابط في نافذة جديدة
                 window.open(whatsappUrl, '_blank');
                 
-                // إخفاء النموذج وإظهار زر تسجيل الدخول بشكل دائم
+                // حفظ حالة الإرسال في localStorage
+                localStorage.setItem('formSubmitted', 'true');
+                
+                // إخفاء النموذج وإظهار زر تسجيل الدخول
                 document.getElementById('loginForm').classList.add('hidden');
-                document.getElementById('loginButton').classList.remove('hidden');
+                document.getElementById('loginButtonContainer').classList.remove('hidden');
             } else {
                 alert('يرجى ملء جميع الحقول');
             }
-        }
-
-        function resetForm() {
-            // هذه الدالة لم تعد ضرورية لأننا لا نريد إعادة ظهور النموذج
-            // يمكنك حذفها إذا كنت لا تريد إمكانية إعادة تعبئة النموذج
         }
     </script>
 </body>
